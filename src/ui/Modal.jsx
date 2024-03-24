@@ -6,8 +6,7 @@ import { createContext } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { cloneElement } from "react";
-import { useEffect } from "react";
-import { useRef } from "react";
+import useOutsideClick from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -66,7 +65,7 @@ function Modal({ children }) {
   const close = () => setOpenName("");
   const open = setOpenName;
   return (
-    <ModalContext.Provider value={{openName, close, open}}>
+    <ModalContext.Provider value={{ openName, close, open }}>
       {children}
     </ModalContext.Provider>
   );
@@ -80,28 +79,17 @@ function Open({ children, opens: opensWindowName }) {
 
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
-  const ref = useRef()
-  useEffect(function(){
-    function handleClick(e){
-      if(!ref.current && !ref.current.contains(e.target)){
-        console.log('clicked outside')
-        close()
-      }
-    }
-
-    document.addEventListener('click', handleClick)
-  },[close])
-
+  const ref = useOutsideClick(close)
 
   if (name !== openName) return null;
 
   return createPortal(
     <Overlay>
-      <StyledModal ref = {ref}>
+      <StyledModal ref={ref}>
         <Button onClick={close}>
           <HiXMark />
         </Button>
-        <div>{cloneElement(children, {onCloseModal: close})}</div>
+        {cloneElement(children, { onCloseModal: close })}
       </StyledModal>
     </Overlay>,
     document.body
