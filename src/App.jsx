@@ -11,6 +11,7 @@ import Settings from "./pages/Settings";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
+import Booking from "./pages/Booking";
 
 import { GlobalStyles } from "./styles/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
@@ -33,6 +34,7 @@ function App() {
             <Route index element={<Navigate replaceto="dashboard" />} />
             <Route path="dashboard" element={<DashBoard />} />
             <Route path="bookings" element={<Bookings />} />
+            <Route path='bookings/:bookingId' element={<Booking />}/>
             <Route path="cabins" element={<Cabins />} />
             <Route path="users" element={<Users />} />
             <Route path="settings" element={<Settings />} />
