@@ -48,12 +48,11 @@ function SignupForm() {
             required: "This field is required",
             minLength: {
               value: 8,
-              message: "password should be minimum 8 characters",
+              message: "password must contain minimum 8 characters",
             },
           })}
         />
       </FormRow>
-
       <FormRow label="Repeat password" error={errors?.passwordConfirm?.message}>
         <Input
           type="password"
@@ -67,7 +66,6 @@ function SignupForm() {
       </FormRow>
 
       <FormRow>
-        {/* type is an HTML attribute! */}
         <Button variation="secondary" type="reset">
           Cancel
         </Button>
