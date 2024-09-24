@@ -11,15 +11,15 @@ import { useUpdateUser } from "./useUpdateUser";
 
 function UpdateUserDataForm() {
   // We don't need the loading state, and can immediately use the user data, because we know that it has already been loaded at this point
+
   const {
     user: {
       email,
       user_metadata: { fullName: currentFullName },
     },
   } = useUser();
-
+  console.log(currentFullName);
   const { isUpdating, updateUser } = useUpdateUser();
-
   const [fullName, setFullName] = useState(currentFullName);
   const [avatar, setAvatar] = useState(null);
 
@@ -38,9 +38,9 @@ function UpdateUserDataForm() {
     );
   }
 
-  function handleCancel(){
-    setFullName(currentFullName)
-    setAvatar(null)
+  function handleCancel() {
+    setFullName(currentFullName);
+    setAvatar(null);
   }
 
   return (
@@ -66,7 +66,12 @@ function UpdateUserDataForm() {
         />
       </FormRow>
       <FormRow>
-        <Button type="reset" onClick={handleCancel} variation="secondary" disabled={isUpdating}>
+        <Button
+          type="reset"
+          onClick={handleCancel}
+          variation="secondary"
+          disabled={isUpdating}
+        >
           Cancel
         </Button>
         <Button>Update account</Button>
