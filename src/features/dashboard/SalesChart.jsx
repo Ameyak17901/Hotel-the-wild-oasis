@@ -55,7 +55,6 @@ const fakeData = [
   { label: "Feb 05", totalSales: 1400, extrasSales: 600 },
   { label: "Feb 06", totalSales: 1450, extrasSales: 400 },
 ];
-
 const isDarkMode = true;
 
 function SalesChart({ bookings, numDays }) {
@@ -73,7 +72,7 @@ function SalesChart({ bookings, numDays }) {
         .reduce((acc, cur) => acc + cur.totalPrice, 0),
       extrasSales: bookings
         .filter((booking) => isSameDay(date, new Date(booking.created_at)))
-        .reduce((acc, cur) => acc + cur.extraPrice, 0),
+        .reduce((acc, cur) => acc + cur.extrasPrice, 0),
     };
   });
   const colors = isDarkMode
