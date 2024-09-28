@@ -8,14 +8,14 @@ import {
 import Stat from "./Stat";
 import { formatCurrency } from "../../utils/helpers";
 
-function Stats({ bookings, confirmedStays, numDays, cabinsCount }) {
+function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
   const numBookings = bookings.length;
   const sales = bookings.reduce((acc, cur) => acc + cur.totalPrice, 0);
 
   const checkIns = confirmedStays.length;
   const occupation =
     confirmedStays.reduce((acc, cur) => acc + cur.numNights, 0) /
-    (numDays * cabinsCount);
+    (numDays * cabinCount);
   return (
     <>
       <Stat
